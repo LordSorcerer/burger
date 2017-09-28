@@ -37,10 +37,13 @@ ul {
 .boxBurger {
     border: 1px white solid;
     text-align: left;
+    padding:5px;
+    margin-bottom: 10px;
 }
 
 #formSubmit {
     border: 1px white solid;
+    padding: 5px;
     clear: both;
     text-align: center;
 }

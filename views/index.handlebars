@@ -40,10 +40,19 @@
 //Working
 
 $(document).on('click', '#btnSubmit', function() {
+    event.preventDefault();
     var name = $("#burger_name").val().trim();
     if (name != "") {
-        $.post("/api/submit", { burger_name: name }, function(data) {
-
+        /*$.post("/api/submit", { burger_name: name }, function(data) {
+            location.reload();
+        });*/
+        $.ajax({
+            method: 'POST',
+            url: "/api/burger",
+            dataType: 'json',
+            data: { burger_name: name },
+        }).done(function(data) {
+            window.location.reload();
         });
     };
     $("#burger_name").val("");
@@ -53,12 +62,12 @@ $(document).on('click', '.btnDelete', function() {
     var id = $(this).parent().attr("data-id");
     console.log(id);
     $.ajax({
-        url: "/api/remove",
-        type: 'DELETE',
+        method: 'DELETE',
+        url: "/api/burger",
         dataType: 'json',
         data: { id: id }
-    }, function(data) {
-
+    }).done(function(data) {
+        window.location.reload();
     });
 
 });
@@ -66,12 +75,12 @@ $(document).on('click', '.btnDelete', function() {
 $(document).on('click', '.btnShip', function() {
     var id = $(this).parent().attr("data-id");
     $.ajax({
-        url: "/api/update",
-        type: 'PUT',
+        method: 'PUT',
+        url: "/api/burger",
         dataType: 'json',
         data: { id: id }
-    }, function(data) {
-
-    })
+    }).done(function(data) {
+        window.location.reload();
+    });
 });
 </script>
