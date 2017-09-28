@@ -1,0 +1,52 @@
+body {
+    color: white;
+    background-color: black;
+}
+
+ul {
+
+    list-style-type: none
+}
+
+.header {
+    text-align: center;
+    border: 1px white solid;
+}
+
+#colIntact {
+    text-align: center;
+    color: lightblue;
+    float: left;
+    width: 40%;
+}
+
+#colDevoured {
+    text-align: center;
+    color: red;
+    float: right;
+    width: 40%;
+    margin-right: 4%;
+}
+
+.btnBurger {
+    border-color: white;
+    background-color: black;
+    color: white;
+}
+
+.boxBurger {
+    border: 1px white solid;
+    text-align: left;
+}
+
+#formSubmit {
+    border: 1px white solid;
+    clear: both;
+    text-align: center;
+}
+
+#burger_name {
+    border-color: white;
+    background-color: black;
+    color: white;
+}

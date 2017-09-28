@@ -1,0 +1,77 @@
+<div class="header">
+    <h1>Order Manager</h1>
+    <h3>Review burger orders before shipping</h3>
+    <form id="formSubmit">
+        <h3>New Burger Order</h3>
+        <textarea type="text" id="burger_name"></textarea>
+        <br>
+        <br>
+        <button type="submit" id="btnSubmit" class="btnBurger">Submit</button>
+    </form>
+</div>
+<div id="colIntact">
+    <ul>
+        <h3>Undevoured</h3> {{#each burgers}} {{#if this.devoured}} {{else}}
+        <li data-id={{this.item_id}} class="boxBurger">
+            <p>ID: {{this.item_id}}</p>
+            <p>Burger Name: {{this.burger_name}}</p>
+            <p>Date: {{this.date}}</p>
+            <button class="btnShip btnBurger">Devour</button>
+            <button class="btnDelete btnBurger">Delete</button>
+        </li>
+        {{/if}} {{/each}}
+    </ul>
+</div>
+<div id="colDevoured">
+    <ul>
+        <h3>Devoured</h3> {{#each burgers}} {{#if this.devoured}}
+        <li data-id={{this.item_id}} class="boxBurger">
+            <p>ID: {{this.item_id}}</p>
+            <p>Burger Name: {{this.burger_name}}</p>
+            <p>Date: {{this.date}}</p>
+            <button class="btnDelete btnBurger">Delete</button>
+        </li>
+        {{/if}} {{/each}}
+    </ul>
+</div>
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+//Working
+
+$(document).on('click', '#btnSubmit', function() {
+    var name = $("#burger_name").val().trim();
+    if (name != "") {
+        $.post("/api/submit", { burger_name: name }, function(data) {
+
+        });
+    };
+    $("#burger_name").val("");
+});
+
+$(document).on('click', '.btnDelete', function() {
+    var id = $(this).parent().attr("data-id");
+    console.log(id);
+    $.ajax({
+        url: "/api/remove",
+        type: 'DELETE',
+        dataType: 'json',
+        data: { id: id }
+    }, function(data) {
+
+    });
+
+});
+
+$(document).on('click', '.btnShip', function() {
+    var id = $(this).parent().attr("data-id");
+    $.ajax({
+        url: "/api/update",
+        type: 'PUT',
+        dataType: 'json',
+        data: { id: id }
+    }, function(data) {
+
+    })
+});
+</script>
