@@ -6,6 +6,7 @@ var orm = {
             cb(err, data);
         });
     },
+    //Honestly, these three following functions are redundant
     insertOne: function(queryString, inputData, cb) {
         connection.query(queryString, inputData, function(err, data) {
             cb(err, data);
