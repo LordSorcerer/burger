@@ -6,7 +6,8 @@ var exphbs = require("express-handlebars");
 
 var connection = require("./config/connection.js");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
+
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
